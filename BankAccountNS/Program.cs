@@ -33,6 +33,9 @@ namespace BankAccountNS
         {
             get { return m_balance; }
         }
+
+        public static string DebitAmountLessThanZeroMessage { get; set; }
+
         public void Debit(double amount)
         {
             if (m_frozen)

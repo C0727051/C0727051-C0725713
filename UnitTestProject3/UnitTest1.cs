@@ -15,8 +15,19 @@ namespace BankAccountNS
             double debitAmount = -100.00;
             BankAccount account = new BankAccount("Mr. Bryan Walton", beginningBalance);
             //Act
-            account.Debit(debitAmount);
-            //Assert is handled by the ExpectedException attribute on the test method. N
+            try
+            {
+                account.Debit(debitAmount);
+            }
+            catch (ArgumentOutOfRangeException e)
+            {
+                //Assert is handled by the ExpectedException attribute on the test method.
+                StringAssert.Contains(e.Message, BankAccount.DebitAmountLessThanZeroMessage);
+                return;
+            }
+
+            Assert.Fail("The expected exception not thrown.");
         }
     }
+    
 }
